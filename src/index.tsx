@@ -1,7 +1,8 @@
 import { Button, Frog } from "frog";
-import { devtools } from "frog/dev";
-import { serveStatic } from "frog/serve-static";
 import { neynar } from "frog/hubs";
+
+// this is temporary, before we add authorization + smart contract
+const endpoint = "https://worker-misty-voice-905f.artlu.workers.dev/?fid=";
 
 export const app = new Frog({
   hub: neynar({ apiKey: "NEYNAR_FROG_FM" }),
@@ -50,12 +51,19 @@ app.frame("/", (c) => {
 
 app.castAction(
   "/add-bookmark",
-  (c) => {
+  async (c) => {
     const { verified, actionData } = c;
 
     if (verified && actionData) {
-      console.log(actionData);
-
+      const url = `${endpoint}${actionData.fid}`;
+      const init = {
+        body: actionData.castId.hash,
+        method: "POST",
+        headers: {
+          "content-type": "application/text",
+        },
+      };
+      await fetch(url, init);
       return c.message({ message: "Done!" });
     } else {
       return c.error({ message: "Unauthorized" });
@@ -63,20 +71,10 @@ app.castAction(
   },
   {
     name: "Add Bookmark (decentralized)",
-    icon: "link-external",
+    icon: "bookmark",
     description: "Decentralized bookmarks",
     aboutUrl: "https://farcaster.id/artlu",
   }
 );
-
-const isCloudflareWorker = typeof caches !== "undefined";
-if (isCloudflareWorker) {
-  const manifest = await import("__STATIC_CONTENT_MANIFEST");
-  const serveStaticOptions = { manifest, root: "./" };
-  app.use("/*", serveStatic(serveStaticOptions));
-  devtools(app, { assetsPath: "/frog", serveStatic, serveStaticOptions });
-} else {
-  devtools(app, { serveStatic });
-}
 
 export default app;
