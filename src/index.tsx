@@ -3,7 +3,7 @@ import { neynar } from "frog/hubs";
 
 // this is temporary, before we add authorization + smart contract
 const endpoint = "https://worker-misty-voice-905f.artlu.workers.dev/?fid=";
-const FRAMECHAIN_SECRET = "secret";
+const FRAMECHAIN_SECRET = "secret_for_one_smart_contract_and_its_data";
 const NEYNAR_API_KEY = "NEYNAR_FROG_FM";
 
 export const app = new Frog({
