@@ -4,7 +4,7 @@ import { neynar } from "frog/middlewares";
 
 // this is temporary, before we add authorization + smart contract
 const endpoint = "https://worker-misty-voice-905f.artlu.workers.dev/?fid=";
-const FRAMECHAIN_TOKEN = "thisisaprivatetokenifyouseeittheresaleak";
+const FRAMECHAIN_TOKEN = "thisisaprivatetokenifyouseeitthereisaleak";
 const NEYNAR_API_KEY = "NEYNAR_FROG_FM";
 
 export const app = new Frog({
@@ -76,8 +76,17 @@ app.castAction(
           Authorization: `Basic ${FRAMECHAIN_TOKEN}`,
         },
       };
-      await fetch(url, init);
-      return c.message({ message: "Done!" });
+      try {
+        const response = await fetch(url, init);
+        if (response.ok) {
+          return c.message({ message: "Done!" });
+        } else {
+          throw new Error(`${response.status}`);
+        }
+      } catch (e) {
+        console.error(JSON.stringify(e));
+        return c.error({ message: "POST Error" });
+      }
     } else {
       return c.error({ message: "Unauthorized" });
     }
