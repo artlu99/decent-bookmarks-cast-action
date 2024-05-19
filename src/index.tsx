@@ -81,11 +81,10 @@ app.castAction(
         if (response.ok) {
           return c.message({ message: "Done!" });
         } else {
-          throw new Error(`${response.status}`);
+          return c.error({ message: `${response.status}: ${response.statusText}` });
         }
       } catch (e) {
-        console.error(JSON.stringify(e));
-        return c.error({ message: "POST Error" });
+        return c.error({ message: "Generic POST Error" });
       }
     } else {
       return c.error({ message: "Unauthorized" });
