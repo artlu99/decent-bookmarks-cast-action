@@ -79,9 +79,9 @@ app.castAction(
       try {
         const response = await fetch(url, init);
         if (response.ok) {
-          return c.message({ message: "Done!" });
+          return c.message({ message: `${response.statusText}` });
         } else {
-          return c.error({ message: `${response.status}: ${response.statusText}` });
+          return c.error({ message: `${response.statusText}` });
         }
       } catch (e) {
         return c.error({ message: "Generic POST Error" });
