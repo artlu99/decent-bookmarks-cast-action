@@ -1,14 +1,20 @@
 import { Button, Frog } from "frog";
-import { neynar } from "frog/hubs";
+import { neynar as neynarHub } from "frog/hubs";
+import { neynar } from "frog/middlewares";
 
 // this is temporary, before we add authorization + smart contract
 const endpoint = "https://worker-misty-voice-905f.artlu.workers.dev/?fid=";
-const FRAMECHAIN_TOKEN = "serverside_token_for_allowlist";
+const FRAMECHAIN_TOKEN = "thisisaprivatetokenifyouseeittheresaleak";
 const NEYNAR_API_KEY = "NEYNAR_FROG_FM";
 
 export const app = new Frog({
-  hub: neynar({ apiKey: NEYNAR_API_KEY }),
-});
+  hub: neynarHub({ apiKey: NEYNAR_API_KEY }),
+}).use(
+  neynar({
+    apiKey: NEYNAR_API_KEY,
+    features: ["interactor", "cast"],
+  })
+);
 
 app.frame("/", (c) => {
   return c.res({
@@ -59,7 +65,11 @@ app.castAction(
     if (verified && actionData) {
       const url = `${endpoint}${actionData.fid}`;
       const init = {
-        body: actionData.castId.hash,
+        body: JSON.stringify({
+          fid: actionData.castId.fid,
+          username: c.var.cast?.author.username,
+          hash: actionData.castId.hash,
+        }),
         method: "POST",
         headers: {
           "content-type": "application/text",
