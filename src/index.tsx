@@ -25,7 +25,7 @@ app.frame(
         <Button.AddCastAction action="/add-bookmark">
           Add Bookmark Action
         </Button.AddCastAction>,
-        <Button.Link href="https://github.com/artlu99/decent-bookmarks-cast-action">
+        <Button.Link href="https://github.com/artlu99/decent-bookmarks">
           GitHub
         </Button.Link>,
       ],
