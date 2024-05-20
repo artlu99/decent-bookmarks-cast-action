@@ -2,8 +2,8 @@ import { Button, Frog } from "frog";
 import { neynar as neynarHub } from "frog/hubs";
 import { neynar } from "frog/middlewares";
 
-// this is temporary, before we add authorization + smart contract
-const endpoint = "https://decent-bookmarks.artlu.workers.dev/?fid=";
+// this is temporary, before we add smart contract or onHub data storage
+const endpoint = "https://decent-bookmarks.artlu.xyz/?fid=";
 const FRAMECHAIN_TOKEN = "thisisaprivatetokenifyouseeitthereisaleak";
 const NEYNAR_API_KEY = "NEYNAR_FROG_FM";
 
@@ -25,7 +25,9 @@ app.frame(
         <Button.AddCastAction action="/add-bookmark">
           Add Bookmark Action
         </Button.AddCastAction>,
-        <Button.Link href="https://github.com/artlu99/decent-bookmarks-cast-action">GitHub</Button.Link>
+        <Button.Link href="https://github.com/artlu99/decent-bookmarks-cast-action">
+          GitHub
+        </Button.Link>,
       ],
     });
   },
