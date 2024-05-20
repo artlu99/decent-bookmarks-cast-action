@@ -95,7 +95,7 @@ app.castAction(
     }
   },
   {
-    name: "Add Bookmark (decentralized)",
+    name: "Decent Bookmark",
     icon: "bookmark",
     description: "Decentralized bookmarks",
     aboutUrl: "https://farcaster.id/artlu",
