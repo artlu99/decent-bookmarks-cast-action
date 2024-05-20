@@ -3,7 +3,7 @@ import { neynar as neynarHub } from "frog/hubs";
 import { neynar } from "frog/middlewares";
 
 // this is temporary, before we add authorization + smart contract
-const endpoint = "https://worker-misty-voice-905f.artlu.workers.dev/?fid=";
+const endpoint = "https://decent-bookmarks.artlu.workers.dev/?fid=";
 const FRAMECHAIN_TOKEN = "thisisaprivatetokenifyouseeitthereisaleak";
 const NEYNAR_API_KEY = "NEYNAR_FROG_FM";
 
