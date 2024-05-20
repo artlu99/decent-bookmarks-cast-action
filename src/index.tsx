@@ -20,41 +20,12 @@ app.frame(
   "/",
   (c) => {
     return c.res({
-      image: (
-        <div
-          style={{
-            alignItems: "center",
-            background: "linear-gradient(to right, #432889, #17101F)",
-            backgroundSize: "100% 100%",
-            display: "flex",
-            flexDirection: "column",
-            flexWrap: "nowrap",
-            height: "100%",
-            justifyContent: "center",
-            textAlign: "center",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{
-              color: "white",
-              fontSize: 60,
-              fontStyle: "normal",
-              letterSpacing: "-0.025em",
-              lineHeight: 1.4,
-              marginTop: 30,
-              padding: "0 120px",
-              whiteSpace: "pre-wrap",
-            }}
-          >
-            Welcome!
-          </div>
-        </div>
-      ),
+      image: "https://r2.decent-bookmarks.artlu.xyz/Welcome.png",
       intents: [
         <Button.AddCastAction action="/add-bookmark">
           Add Bookmark Action
         </Button.AddCastAction>,
+        <Button.Link href="https://github.com/artlu99/decent-bookmarks-cast-action">GitHub</Button.Link>
       ],
     });
   },
