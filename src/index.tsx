@@ -16,46 +16,50 @@ export const app = new Frog({
   })
 );
 
-app.frame("/", (c) => {
-  return c.res({
-    image: (
-      <div
-        style={{
-          alignItems: "center",
-          background: "linear-gradient(to right, #432889, #17101F)",
-          backgroundSize: "100% 100%",
-          display: "flex",
-          flexDirection: "column",
-          flexWrap: "nowrap",
-          height: "100%",
-          justifyContent: "center",
-          textAlign: "center",
-          width: "100%",
-        }}
-      >
+app.frame(
+  "/",
+  (c) => {
+    return c.res({
+      image: (
         <div
           style={{
-            color: "white",
-            fontSize: 60,
-            fontStyle: "normal",
-            letterSpacing: "-0.025em",
-            lineHeight: 1.4,
-            marginTop: 30,
-            padding: "0 120px",
-            whiteSpace: "pre-wrap",
+            alignItems: "center",
+            background: "linear-gradient(to right, #432889, #17101F)",
+            backgroundSize: "100% 100%",
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "nowrap",
+            height: "100%",
+            justifyContent: "center",
+            textAlign: "center",
+            width: "100%",
           }}
         >
-          Welcome!
+          <div
+            style={{
+              color: "white",
+              fontSize: 60,
+              fontStyle: "normal",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.4,
+              marginTop: 30,
+              padding: "0 120px",
+              whiteSpace: "pre-wrap",
+            }}
+          >
+            Welcome!
+          </div>
         </div>
-      </div>
-    ),
-    intents: [
-      <Button.AddCastAction action="/add-bookmark">
-        Add Bookmark Action
-      </Button.AddCastAction>,
-    ],
-  });
-});
+      ),
+      intents: [
+        <Button.AddCastAction action="/add-bookmark">
+          Add Bookmark Action
+        </Button.AddCastAction>,
+      ],
+    });
+  },
+  { verify: false }
+);
 
 app.castAction(
   "/add-bookmark",
@@ -106,10 +110,6 @@ app.frame("/confirm-unbookmark", (c) => {
   const { verified, frameData } = c;
 
   if (verified && frameData) {
-    const {
-      castId: { hash },
-    } = frameData;
-
     return c.res({
       image: (
         <div
