@@ -20,19 +20,35 @@ app.frame(
   "/",
   (c) => {
     return c.res({
-      image: "https://r2.decent-bookmarks.artlu.xyz/Welcome.png",
+      image: "https://r2.decent-bookmarks.artlu.xyz/title-page.png",
       intents: [
         <Button.AddCastAction action="/add-bookmark">
           Add Bookmark Action
         </Button.AddCastAction>,
-        <Button.Link href="https://github.com/artlu99/decent-bookmarks">
-          GitHub
-        </Button.Link>,
+        <Button action="/about">About</Button>,
       ],
     });
   },
   { verify: false }
 );
+
+app.frame("/about", (c) => {
+  return c.res({
+    image: "https://r2.decent-bookmarks.artlu.xyz/links-page.png",
+    intents: [
+      <Button.Reset>👈 Back</Button.Reset>,
+      <Button.Link href="https://github.com/artlu99/decent-bookmarks">
+        Frontend
+      </Button.Link>,
+      <Button.Link href="https://github.com/artlu99/decent-bookmarks-cast-action">
+        Backend
+      </Button.Link>,
+      <Button.Link href="https://warpcast.com/artlu/0x0706ea29">
+        🧵
+      </Button.Link>,
+    ],
+  });
+});
 
 app.castAction(
   "/add-bookmark",
